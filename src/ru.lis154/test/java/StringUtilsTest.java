@@ -1,8 +1,11 @@
-import org.junit.Test;
+import org.junit.*;
 
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
+import static org.junit.Before.*;
+import static org.junit.After.*;
+
 
 public class StringUtilsTest {
 
@@ -57,6 +60,52 @@ public class StringUtilsTest {
         assertArrayEquals(expected, arr);
 
       //  assertEquals(new User ("Koly", 24), new User ("Koly", 24));
+    }
 
-      }
+    static User kolya = new User("Koly", 24);
+
+
+    @BeforeClass
+    public static void beforeClassSetUp(){
+        kolya.setAge(25);
+    }
+
+
+//    @Before
+//    public void setUp(){
+//        kolya.setAge(25);
+//    }
+
+    @Test
+    public void testUserUsingBefore1(){
+        System.out.println(kolya.getAge());
+    }
+
+    @Test
+    public void testUserUsingBefore2(){
+        System.out.println(kolya.getAge());
+    }
+
+//    @After
+//    public void setDown(){
+//        kolya.setAge(24);
+//    }
+
+    @AfterClass
+    public static void afterClassSetDown(){
+        kolya.setAge(24);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void testBubbleSort2(){
+        int[] arr = null;
+        int[] expected = {-17, 3, 4, 12};
+        Arrays.sort(arr);
+        assertArrayEquals(expected, arr);
+
+        //  assertEquals(new User ("Koly", 24), new User ("Koly", 24));
+    }
+
+
+
 }
